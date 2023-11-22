@@ -59,3 +59,14 @@ $(function() {
     setTimeout(() => {
        $(".alert").addClass("alert-close");
       }, "5000");
+
+$( "#role" ).on("change", function() {
+        var role= $(this).val();
+if(role=='admin')
+$(".role").hide();
+else
+{
+$(".role").show();
+$(".role").removeClass('d-none');
+}
+    });

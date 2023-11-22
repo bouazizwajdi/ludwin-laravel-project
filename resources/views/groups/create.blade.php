@@ -34,7 +34,7 @@
 <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="name">{{__('messages.Group Name')}}
 </a></label>
 <div class="col-lg-8 fv-row">
-<input class="form-control form-control-lg @error('name') is-invalid @enderror" placeholder="{{__('messages.Enter the group name')}}" type="text" name="name" id="name" required>
+<input class="form-control form-control-lg @error('name') is-invalid @enderror" placeholder="{{__('messages.Enter the group name')}}" value="{{ old('name') }}" type="text" name="name" id="name" required>
 
 @error('name')
 <div class="text-danger mt-3">{{$message}}</div>

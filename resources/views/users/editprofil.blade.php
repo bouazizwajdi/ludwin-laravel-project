@@ -34,13 +34,13 @@
             <div class="col-lg-8">
                 <div class="row">
                     <div class="col-lg-6 fv-row">
-                        <input type="text"  class="form-control form-control-lg  mb-3 mb-lg-0 @error('first_name') is-invalid @enderror" value="{{$user->first_name}}"  name="first_name" id="first_name" required />
+                        <input type="text"  class="form-control form-control-lg  mb-3 mb-lg-0 @error('first_name') is-invalid @enderror" value="{{old('first_name',$user->first_name)}}"  name="first_name" id="first_name" required />
                         @error('first_name')
                         <div class="text-danger mt-3">{{$message}}</div>
                         @enderror
                     </div>
                     <div class="col-lg-6 fv-row">
-                        <input type="text" class="form-control form-control-lg @error('last_name') is-invalid @enderror" value="{{$user->last_name}}" name="last_name" id="last_name" required/>
+                        <input type="text" class="form-control form-control-lg @error('last_name') is-invalid @enderror" value="{{old('last_name',$user->last_name)}}" name="last_name" id="last_name" required/>
                         @error('last_name')
                         <div class="text-danger">{{$message}}</div>
                        @enderror
@@ -52,7 +52,7 @@
         <div class="row mb-6">
             <label class="col-lg-3 col-form-label fw-semibold fs-6" for="company_name">{{__('messages.Company Name')}}</label>
             <div class="col-lg-8 fv-row">
-                <input type="text" class="form-control form-control-lg" value="{{$user->company_name}}" name="company_name" id="company_name"/>
+                <input type="text" class="form-control form-control-lg" value="{{old('company_name',$user->company_name)}}" name="company_name" id="company_name"/>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
                 <span  for="phone">{{__('messages.Phone')}}</span>
             </label>
             <div class="col-lg-8 fv-row">
-                <input type="tel" name="phone" class="form-control form-control-lg"  value="{{$user->phone}}"  id="phone"/>
+                <input type="tel" name="phone" class="form-control form-control-lg"  value="{{old('phone',$user->phone)}}"  id="phone"/>
             </div>
         </div>
 
@@ -88,7 +88,7 @@
         <div class="col-lg-8 fv-row">
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                 name="password"  autocomplete="new-password">
-
+                <div class ="alert-info p-2 rounded border border-1 mt-1">{{__('messages.The password must be at least 8 characters')}}</div>
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

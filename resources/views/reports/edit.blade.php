@@ -37,7 +37,7 @@
         <div class="row mb-6">
             <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="name">{{__('messages.Report Name')}}</label>
             <div class="col-lg-8 fv-row">
-                <input class="form-control form-control-lg  @error('name') is-invalid @enderror"  value="{{$report->name}}" type="text" name="name" id="name" required>
+                <input class="form-control form-control-lg  @error('name') is-invalid @enderror"  value="{{old('name',$report->name)}}" type="text" name="name" id="name" required>
         @error('name')
         <div class="text-danger mt-3">{{$message}}</div>
         @enderror
@@ -50,7 +50,7 @@
             <label class="col-lg-3 col-form-label fw-semibold fs-6" for="logo">{{__('messages.Logo')}}</label>
             <div class="col-lg-8 fv-row">
                 @if((!empty($report->logo))&&(!File::exists(asset('files/reports/'.$report->logo))))
-                <img src="{{asset('files/reports/'.$report->logo)}}">
+                <img src="{{asset('files/reports/'.$report->logo)}}" class="pb-2" width="80">
                 @endif
                 <input class="form-control form-control-lg @error('logo') is-invalid @enderror" type="file" name="logo" id="logo">
                 @error('logo')
@@ -63,7 +63,7 @@
             <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="integration_code">{{__('messages.Integration Code')}}</label>
             <div class="col-lg-8 fv-row">
                 <div class ="alert-danger p-2 rounded border mb-1 border-1"> <b>{{__('messages.Change the width')}}</b></div>
-                <textarea class="form-control  @error('integration_code') is-invalid @enderror" id="integration_code" name="integration_code" rows="3" >{{$report->integration_code}}</textarea>
+                <textarea class="form-control  @error('integration_code') is-invalid @enderror" id="integration_code" name="integration_code" rows="3" >{{old('integration_code',$report->integration_code)}}</textarea>
                 @error('integration_code')
                  <div class="text-danger mt-3">{{$message}}</div>
                 @enderror
@@ -74,7 +74,7 @@
         <div class="row mb-6">
             <label class="col-lg-3 col-form-label fw-semibold fs-6" for="description">{{__('messages.Description')}}</label>
             <div class="col-lg-8 fv-row">
-                <div id="kt_ecommerce_add_product_description" name="kt_ecommerce_add_product_description" class="h-200px mb-2"  id="description" name="description" rows="3">{{$report->description}}</div>
+                <textarea class="form-control" id="description" name="description" rows="3"> {{old('description',$report->description)}}</textarea>
             </div>
         </div>
 

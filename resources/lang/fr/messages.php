@@ -85,6 +85,7 @@ return [
     'Enter password'=>'Entrer le mot de passe',
     'Enter password confirmation'=>'Entrer la confirmation du mot de passe',
     'Confirm Password'=>'Confirmez le mot de passe',
+    'The password must be at least 8 characters'=>'Le mot de passe doit contenir au moins 8 caractères.',
     ]
 
 ;

@@ -37,13 +37,13 @@
             <div class="col-lg-8">
                 <div class="row">
                     <div class="col-lg-6 fv-row">
-                        <input type="text"  class="form-control form-control-lg  mb-3 mb-lg-0 @error('first_name') is-invalid @enderror" placeholder="{{__('messages.Enter the name')}}" name="first_name" id="first_name" required />
+                        <input type="text"  class="form-control form-control-lg  mb-3 mb-lg-0 @error('first_name') is-invalid @enderror" placeholder="{{__('messages.Enter the name')}}" value="{{ old('first_name') }}" name="first_name" id="first_name" required />
                         @error('first_name')
                         <div class="text-danger mt-3">{{$message}}</div>
                         @enderror
                     </div>
                     <div class="col-lg-6 fv-row">
-                        <input type="text" class="form-control form-control-lg @error('last_name') is-invalid @enderror" placeholder="{{__('messages.Enter the surname')}}" name="last_name" id="last_name" required/>
+                        <input type="text" class="form-control form-control-lg @error('last_name') is-invalid @enderror" placeholder="{{__('messages.Enter the surname')}}" value="{{ old('last_name') }}" name="last_name" id="last_name" required/>
                         @error('last_name')
                         <div class="text-danger">{{$message}}</div>
                        @enderror
@@ -55,7 +55,7 @@
         <div class="row mb-6">
             <label class="col-lg-3 col-form-label fw-semibold fs-6" for="company_name">  {{__('messages.Company Name')}} </label>
             <div class="col-lg-8 fv-row">
-                <input type="text" class="form-control form-control-lg  " placeholder=" {{__('messages.Enter the company name')}}" name="company_name" id="company_name"/>
+                <input type="text" class="form-control form-control-lg  " placeholder=" {{__('messages.Enter the company name')}}" value="{{ old('company_name') }}" name="company_name" id="company_name"/>
             </div>
         </div>
 
@@ -79,7 +79,7 @@
                 <span  for="phone">{{__('messages.Phone')}}</span>
              </label>
             <div class="col-lg-8 fv-row">
-                <input type="tel" name="phone" class="form-control form-control-lg  " placeholder="{{__('messages.Enter the phone number')}}"  id="phone"/>
+                <input type="tel" name="phone" class="form-control form-control-lg  " placeholder="{{__('messages.Enter the phone number')}}"  value="{{ old('phone') }}" id="phone"/>
             </div>
         </div>
 
@@ -91,7 +91,7 @@
         <div class="col-lg-8 fv-row">
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                 name="password" placeholder="{{__('messages.Enter password')}}" required autocomplete="new-password">
-
+                <div class ="alert-info p-2 rounded border border-1 mt-1">{{__('messages.The password must be at least 8 characters')}}</div>
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -110,12 +110,12 @@
     </div>
 
     <div class="row mb-6">
-        <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="role">{{ __('messages.Role') }}</label>
+        <label class="col-lg-3 col-form-label required fw-semibold fs-6 " for="role">{{ __('messages.Role') }}</label>
         <div class="col-lg-8 fv-row">
-            <select name="role" aria-label="Select a Role" data-control="select2" data-placeholder="--- {{ __('messages.Choose') }} ---" class="form-select  form-select-lg fw-semibold  @error('role') is-invalid @enderror">
+            <select name="role" aria-label="Select a Role" id="role" data-control="select2" data-placeholder="--- {{ __('messages.Choose') }} ---" class="form-select  form-select-lg fw-semibold  @error('role') is-invalid @enderror">
                 <option value="">--- {{ __('messages.Choose') }} ---</option>
-                <option value="admin">Admin</option>
-                <option value="client">Client</option>
+                <option value="admin"  {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                <option value="client" {{ old('role') == 'client' ? 'selected' : '' }}>Client</option>
             </select>
             @error('role')
             <div class="text-danger mt-3">{{$message}}</div>
@@ -125,7 +125,7 @@
 
 
 
-    <div class="row mb-6">
+    <div class="row mb-6 role">
         <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="group_id" >{{ __('messages.Group') }}</label>
         <div class="col-lg-8 fv-row">
         <select aria-label="Select a Role" data-control="select2" data-placeholder="--- {{ __('messages.Choose') }} ---" class="form-select form-select-lg fw-semibold getreport @error('group_id') is-invalid @enderror" name="group_id" id="group_id">

@@ -38,13 +38,13 @@
             <div class="col-lg-8">
                 <div class="row">
                     <div class="col-lg-6 fv-row">
-                        <input type="text"  class="form-control form-control-lg  mb-3 mb-lg-0 @error('first_name') is-invalid @enderror" value="{{$user->first_name}}"  name="first_name" id="first_name" required />
+                        <input type="text"  class="form-control form-control-lg  mb-3 mb-lg-0 @error('first_name') is-invalid @enderror" value="{{old('first_name',$user->first_name)}}"  name="first_name" id="first_name" required />
                         @error('first_name')
                         <div class="text-danger mt-3">{{$message}}</div>
                         @enderror
                     </div>
                     <div class="col-lg-6 fv-row">
-                        <input type="text" class="form-control form-control-lg @error('last_name') is-invalid @enderror" value="{{$user->last_name}}" name="last_name" id="last_name" required/>
+                        <input type="text" class="form-control form-control-lg @error('last_name') is-invalid @enderror" value="{{old('last_name',$user->last_name)}}" name="last_name" id="last_name" required/>
                         @error('last_name')
                         <div class="text-danger">{{$message}}</div>
                        @enderror
@@ -56,7 +56,7 @@
         <div class="row mb-6">
             <label class="col-lg-3 col-form-label fw-semibold fs-6" for="company_name">{{__('messages.Company Name')}}</label>
             <div class="col-lg-8 fv-row">
-                <input type="text" class="form-control form-control-lg" value="{{$user->company_name}}" name="company_name" id="company_name"/>
+                <input type="text" class="form-control form-control-lg" value="{{old('company_name',$user->company_name)}}" name="company_name" id="company_name"/>
             </div>
         </div>
 
@@ -66,7 +66,7 @@
                 <span class="required">{{__('messages.Email')}}</span>
             </label>
             <div class="col-lg-8 fv-row">
-                <input type="tel" name="email" class="form-control form-control-lg @error('email') is-invalid @enderror" value="{{$user->email}}" required
+                <input type="tel" name="email" class="form-control form-control-lg @error('email') is-invalid @enderror" value="{{old('email',$user->email)}}" required
                 autocomplete="email" />
                 @error('email')
                 <div class="text-danger mt-3">{{$message}}</div>
@@ -80,7 +80,7 @@
                 <span  for="phone">{{__('messages.Phone')}}</span>
          </label>
             <div class="col-lg-8 fv-row">
-                <input type="tel" name="phone" class="form-control form-control-lg"  value="{{$user->phone}}"  id="phone"/>
+                <input type="tel" name="phone" class="form-control form-control-lg"  value="{{old('phone',$user->phone)}}"  id="phone"/>
             </div>
         </div>
 
@@ -92,7 +92,7 @@
         <div class="col-lg-8 fv-row">
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                 name="password"  autocomplete="new-password">
-
+                <div class ="alert-info p-2 rounded border border-1 mt-1">{{__('messages.The password must be at least 8 characters')}}</div>
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -113,9 +113,9 @@
     <div class="row mb-6">
         <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="role">{{__('messages.Role')}}</label>
         <div class="col-lg-8 fv-row">
-            <select name="role" aria-label="Select a Role" data-control="select2" data-placeholder="--- Choissir ---" class="form-select  form-select-lg fw-semibold  @error('role') is-invalid @enderror">
-                <option  @if (($user->role)=='admin')selected @endif value="admin"> Admin</option>
-                <option  @if (($user->role)=='client') selected @endif value="client">Client</option>
+            <select name="role" aria-label="Select a Role" data-control="select2" data-placeholder="--- Choissir ---" id="role" class="form-select  form-select-lg fw-semibold  @error('role') is-invalid @enderror">
+                <option  {{ (old('role', $user->role) == 'admin') ? 'selected' : '' }} value="admin"> Admin</option>
+                <option  {{ (old('role', $user->role) == 'client') ? 'selected' : '' }} value="client">Client</option>
             </select>
             @error('role')
             <div class="text-danger mt-3">{{$message}}</div>
@@ -124,7 +124,7 @@
     </div>
 
 
-
+<div class="role @if($user->role=='admin') d-none @endif">
     <div class="row mb-6">
         <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="group_id" >{{__('messages.Group')}}</label>
         <div class="col-lg-8 fv-row">
@@ -161,7 +161,7 @@
                 </div>
              </div>
         </div>
-
+    </div>
 </div>
 
 <div class="card-footer d-flex justify-content-end py-6 px-9">

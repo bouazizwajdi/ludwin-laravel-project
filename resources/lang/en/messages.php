@@ -55,7 +55,7 @@ return [
 'Change the width'=>'Change the width="100%" and height="500" settings in your integration code',
 'No reports yet'=> 'No reports at this moment',
 'View the report'=>'View the report :',
-'Back'=>'Retour',
+'Back'=>'Back',
 'Edit user groups'=>'Edit user groups',
 'Edit group'=>'Edit group',
 'This form allows you to quickly modify a group and these reports.'=>'This form allows you to quickly modify a group and these reports.',
@@ -83,6 +83,7 @@ return [
 'Enter password'=>'Enter password',
 'Enter password confirmation'=>'Enter password confirmation',
 'Confirm Password'=>'Confirm Password',
+'The password must be at least 8 characters'=>'The password must be at least 8 characters',
 ]
 
 

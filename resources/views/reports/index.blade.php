@@ -33,7 +33,7 @@
 </td>
 <td>
     @if((!empty($report->logo))&&(!File::exists(asset('files/reports/'.$report->logo))))
-    <img src="{{asset('files/reports/'.$report->logo)}}" width="100">
+    <img src="{{asset('files/reports/'.$report->logo)}}" width="50">
     @endif
 </td>
 

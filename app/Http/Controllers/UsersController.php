@@ -36,15 +36,19 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
+        $rules=[
             'first_name' =>['required','string','max:50'],
             'last_name' => ['required', 'string','max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'string','max:15'],
-            'group_id' => [ 'required','integer','exists:groups,id'],
+            'group_id' => [ 'required','integer','exists:groups,id'],];
 
-        ]);
+        if($request->role==="admin"){
+            unset($rules['group_id']);
+        }
+        $request->validate($rules);
+
 
         $user=User::create($request->all());
         $user->reports()->attach($request->input('reports'));
@@ -68,7 +72,6 @@ class UsersController extends Controller
         //
         $groups=Group::all();
         $reports=Report::all();
-     //  dd($user->reports->toArray());
          $reprts_id=[];
         foreach($user->reports->toArray() as $report){
         $reprts_id[]=$report['id'];
@@ -82,25 +85,27 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         //
-        $request->validate([
+        $rules=[
             'first_name' =>['required','string','max:50'],
             'last_name' => ['required', 'string','max:50'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['nullable','string', 'min:8','confirmed'],
             'role' => ['required', 'string','max:15'],
-            'group_id' => [ 'required','integer','exists:groups,id'],
+            'group_id' => [ 'integer','exists:groups,id'],
 
-        ]);
-        $user->update([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'company_name' => $request->input('company_name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'password' => bcrypt($request->input('password')),
-            'role' => $request->input('role'),
-            'group_id' => $request->input('group_id'),
-           ]);
+        ];
+        if($request->role==="admin"){
+            unset($rules['group_id']);
+        }
+
+        if(empty($request->password)){
+            unset($rules['password']);
+            unset($request['password']);
+        }
+
+        $request->validate($rules);
+
+        $user->update($request->all());
         $user->reports()->sync($request->input('reports'));
         return redirect()->route("users.index")->with('success','Un utilisateur est modifié avec succès');
     }
@@ -117,12 +122,15 @@ class UsersController extends Controller
         $user=User::find($id);
 
         //
-        $request->validate([
+        $rules=[
             'first_name' =>['required','string','max:50'],
             'last_name' => ['required', 'string','max:50'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['nullable','string', 'min:8','confirmed'],
-        ]);
+            'password' => ['string', 'min:8','confirmed'],
+        ];
+
+
+        $request->validate($rules);
         $inputs=$request->all();
         unset($inputs['password']);
         if(!empty($request->input('password'))){
@@ -161,7 +169,12 @@ class UsersController extends Controller
         $lang=app()->getLocale();
         $lg=session()->get('locale');
         $list=trans('messages.List Reports');
-        return response()->json(['group_reports' => $reprts_id, 'reports'=>$reports,'lang'=>$lang,'lg'=>$lg,'list'=>$list], 200);
+        return response()->json([
+            'group_reports' => $reprts_id,
+            'reports'=>$reports,
+            'lang'=>$lang,'lg'=>$lg,
+            'list'=>$list],
+            200);
 
     }
 

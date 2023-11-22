@@ -40,7 +40,7 @@ class ReportsController extends Controller
     {
         $request->validate([
             'name' => 'required|max:190|string',
-            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:190',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'integration_code' => 'required',
         ]);
 
@@ -53,7 +53,7 @@ class ReportsController extends Controller
 
                 $nameimg = uniqid() . time() . '.' . $photo->getClientOriginalExtension();
 
-                $photo->move(public_path() . "files/reports/", $nameimg);
+                $photo->move(public_path() . "/files/reports/", $nameimg);
                 $inputs['logo'] = $nameimg;
             }
         } else {
@@ -94,7 +94,7 @@ class ReportsController extends Controller
         // $nameimg= $report->logo;
         $request->validate([
             'name' => 'required|max:190|string',
-            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:190',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'integration_code' => 'required',
         ]);
 
@@ -103,8 +103,8 @@ class ReportsController extends Controller
 
             if ($photo = $request->file('logo')) {
                 //  dd($report);
-                if (file_exists(public_path() . "files/reports/" . $report->logo))
-                    unlink((public_path() . "files/reports/" . $report->logo));
+                if (file_exists(public_path() . "/files/reports/" . $report->logo))
+                    unlink((public_path() . "/files/reports/" . $report->logo));
 
                 $nameimg = uniqid() . time() . '.' . $photo->getClientOriginalExtension();
 
