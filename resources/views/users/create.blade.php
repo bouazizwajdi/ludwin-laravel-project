@@ -128,7 +128,7 @@
     <div class="row mb-6 role">
         <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="group_id" >{{ __('messages.Group') }}</label>
         <div class="col-lg-8 fv-row">
-        <select aria-label="Select a Role" data-control="select2" data-placeholder="--- {{ __('messages.Choose') }} ---" class="form-select form-select-lg fw-semibold getreport @error('group_id') is-invalid @enderror" name="group_id" id="group_id">
+        <select aria-label="Select a Role" data-control="select2" data-placeholder="--- {{ __('messages.Choose') }} ---" class="form-select form-select-lg fw-semibold getreport @error('group_id') is-invalid @enderror" id="group_id" name="group_id">
             <option value="">--- {{ __('messages.Choose') }} ---</option>
             @foreach ($groups as $group)
                 <option value="{{ $group->id}}">{{ $group->name }}</option>
@@ -140,7 +140,7 @@
     </div>
     </div>
 
-        <div id="reports"></div>
+        <div id="reports" class="d-none"></div>
 
 </div>
 

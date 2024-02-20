@@ -139,7 +139,7 @@
     </div>
     </div>
 
-        <div id="reports">
+        <div id="reports" class="d-none">
             <div class="row mb-6">
                 <label class="col-lg-3 col-form-label required fw-semibold fs-6">{{__('messages.List of Reports')}}</label>
                 <div class="col-lg-8 fv-row row">
@@ -165,7 +165,7 @@
 </div>
 
 <div class="card-footer d-flex justify-content-end py-6 px-9">
-    <button type="reset" class="btn btn-secondary btn-active-light-primary me-2">{{__('messages.Cancel')}}</button>
+    {{-- <button type="reset" class="btn btn-secondary btn-active-light-primary me-2">{{__('messages.Cancel')}}</button> --}}
     <button type="submit" class="btn btn-danger" id="kt_account_profile_details_submit">{{__('messages.Edit')}}</button>
 </div>
 

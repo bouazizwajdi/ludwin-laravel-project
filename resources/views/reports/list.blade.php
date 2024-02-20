@@ -9,14 +9,14 @@
     <div class="row">
         @if(count($reports)>0)
          @foreach($reports as $report)
-         <div class="col-md-2">
+         <div class="col-md-4">
             <div class="card my-4">
               <div class="card-body p-5">
                 <a href="{{route("reports.show",$report->id)}}" class="text-center">
-                    <img src="{{asset('images/bi.png')}}" class="card-img-top" alt="{{ $report->name }}">
+                    <img src="@if($report->logo) {{ asset('files/reports/'.$report->logo)}} @else {{ asset('images/bi.png')}} @endif" class="card-img-top" alt="{{ $report->name }}">
                 </a>
             </div>
-            <div class="card-title">
+            <div class="card-title" style="height: 43px">
                     <a href="{{route("reports.show",$report->id)}}">
                         <h5 class="card-title text-center">{{ $report->name }}</h5>
                     </a>

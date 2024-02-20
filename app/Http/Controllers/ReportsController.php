@@ -103,8 +103,8 @@ class ReportsController extends Controller
 
             if ($photo = $request->file('logo')) {
                 //  dd($report);
-                if (file_exists(public_path() . "/files/reports/" . $report->logo))
-                    unlink((public_path() . "/files/reports/" . $report->logo));
+                if (file_exists(public_path() . "/files/reports/" . $report->logo) && is_file(public_path() . "/files/reports/" . $report->logo))
+                unlink((public_path() . "/files/reports/" . $report->logo));
 
                 $nameimg = uniqid() . time() . '.' . $photo->getClientOriginalExtension();
 
@@ -129,6 +129,8 @@ class ReportsController extends Controller
         if (file_exists(public_path() . "files/reports/" . $report->logo))
             unlink((public_path() . "files/reports/" . $report->logo));
 
+            $report->groups()->detach();
+            $report->users()->detach();
         $report->delete();
 
         return redirect()->route("reports.index")->with('success', 'Un rapport est supprimé avec succès');
@@ -138,10 +140,9 @@ class ReportsController extends Controller
 
         if (Auth::guard()->user()->role == 'client') {
             $user = User::find(Auth::guard()->user()->id);
-
-            $reports = $user->reports;
+            $reports = $user->group->reports()->orderBy('name')->get();
         } elseif (Auth::guard()->user()->role == 'admin')
-            $reports = Report::all()->sortDesc();
+            $reports = Report::orderBy('name', 'asc')->get();
 
         return view("reports.list", compact("reports"));
     }

@@ -33,7 +33,7 @@
 </td>
 <td>
     @if((!empty($report->logo))&&(!File::exists(asset('files/reports/'.$report->logo))))
-    <img src="{{asset('files/reports/'.$report->logo)}}" width="50">
+    <img src="{{asset('files/reports/'.$report->logo)}}" width="100">
     @endif
 </td>
 
@@ -60,7 +60,7 @@
           </a>
         </div>
         <div class="menu-item btn-supprimer px-3">
-            @if(count($report->groups)==0 && count($report->users)==0  )
+            {{-- @if(count($report->groups)==0 && count($report->users)==0  ) --}}
             <form method="POST" action="{{route("reports.destroy",$report->id)}}">
                 @csrf
                 @method("delete")
@@ -69,7 +69,7 @@
           </button>
 
                 </form>
-        @endif
+        {{-- @endif --}}
         </div>
       </div>
 
