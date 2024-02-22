@@ -42,7 +42,7 @@ Route::middleware(['admin'])->group(function () {
     Route::post('users/getreport', [UsersController::class,'getreport'])->name('users.getreport');
 
     Route::resource('groups',GroupsController::class);
-    Route::resource('files',FilesController::class);
+    Route::resource('excels',FilesController::class);
     Route::resource('folders',FoldersController::class);
     Route::resource('users',UsersController::class);
     Route::resource('reports',ReportsController::class);
