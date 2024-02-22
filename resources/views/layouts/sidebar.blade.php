@@ -39,6 +39,18 @@
                         </a>
                     </div>
 
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{route('folders.list')}}">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-address-book fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">{{__('messages.List of Folders')}} </span>
+                        </a>
+                    </div>
 
                 </div>
 
@@ -137,6 +149,14 @@
                                 <span class="menu-title">{{__('messages.List of Folders')}} </span>
                             </a>
                         </div>
+                        {{-- <div class="menu-item">
+                            <a class="menu-link" href="{{route('folders.list')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">{{__('messages.List of Folders')}} </span>
+                            </a>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -154,7 +174,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('files.create')}}">
+                            <a class="menu-link" href="{{route('excels.create')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -162,7 +182,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('files.index')}}">
+                            <a class="menu-link" href="{{route('excels.index')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

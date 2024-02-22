@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Report;
+use App\Models\Folder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -15,7 +16,7 @@ class GroupsController extends Controller
     public function index()
     {
         //
-       
+
 
         $groups= Group::all()->sortDesc();
         return view("groups.index",compact("groups"));
@@ -28,7 +29,8 @@ class GroupsController extends Controller
     {
         //
         $reports=Report::all();
-        return view("groups.create",compact("reports"));
+        $folders=Folder::all();
+        return view("groups.create",compact("reports","folders"));
 
     }
 
@@ -45,7 +47,7 @@ class GroupsController extends Controller
         $group=Group::create($request->all());
 
        $group->reports()->attach($request->input('reports'));
-
+       $group->folders()->attach($request->input('folders'));
 
         return redirect()->route("groups.index")->with('success','Un nouveau groupe est créé avec succès');
     }
@@ -65,15 +67,19 @@ class GroupsController extends Controller
     public function edit(Group $group)
     {
         //
-        $reports=Report::all();
+    $reports=Report::all();
      //  dd($group->reports->toArray());
-      $reprts_id=[];
-     foreach($group->reports->toArray() as $report){
-     $reprts_id[]=$report['id'];
-
-            }
+    $reprts_id=[];
+    foreach($group->reports->toArray() as $report){
+    $reprts_id[]=$report['id'];
+      }
 //dd($reprts_id);
-        return view("groups.edit",compact("group","reports","reprts_id"));
+$folders=Folder::all();
+$folders_id=[];
+foreach($group->folders->toArray() as $folder){
+$folders_id[]=$folder['id'];
+  }
+        return view("groups.edit",compact("group","reports","reprts_id","folders","folders_id"));
     }
 
     /**
@@ -87,6 +93,7 @@ class GroupsController extends Controller
         ]);
         $group->update($request->all());
         $group->reports()->sync($request->input('reports'));
+        $group->folders()->sync($request->input('folders'));
 
         return redirect()->route("groups.index")->with('success','Un groupe est modifié avec succès');
     }
@@ -99,6 +106,7 @@ class GroupsController extends Controller
         //
 
         $group->reports()->detach();
+        $group->folders()->detach();
         $group->delete();
         return redirect()->route("groups.index")->with('success','Un groupe est supprimé avec succès');
     }

@@ -69,7 +69,7 @@
                     <img src="{{asset('assets/media/flags/en.png')}}" alt="fr">
                  </span>
                   <span class="menu-title">
-                   Anglais
+                   Englais
                   </span>
                 </a>
               </div>

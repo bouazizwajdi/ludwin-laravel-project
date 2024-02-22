@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('folder_group', function (Blueprint $table) {
             $table->id();
-            $table->string('name',150)->unique();
-            $table->string('file',255);
+            $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references("id")->on("groups");
             $table->unsignedBigInteger('folder_id');
             $table->foreign('folder_id')->references("id")->on("folders");
-
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('folder_group');
     }
 };

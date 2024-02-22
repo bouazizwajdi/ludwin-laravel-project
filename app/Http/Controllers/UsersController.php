@@ -177,6 +177,10 @@ class UsersController extends Controller
             200);
 
     }
+    public function error()
+    {
 
+          return view("error.index");
+    }
 
 }

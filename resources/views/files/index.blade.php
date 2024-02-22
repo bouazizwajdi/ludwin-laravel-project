@@ -1,9 +1,10 @@
+
 @extends("layouts.template")
-@section("module",__('messages.Folder Management'))
-@section("descmodule",__('messages.List of Folders'))
+@section("module",__('messages.Excel Files Management'))
+@section("descmodule",__('messages.List of Excel'))
 @section("btnright")
-    <a href="{{route('folders.create')}}" class="btn btn-sm fw-bold btn-dark">
-        {{__('messages.Add Folder')}}
+    <a href="{{route('excels.create')}}" class="btn btn-sm fw-bold btn-dark">
+        {{__('messages.Add File')}}
     </a>
 @endsection
 @section("content")
@@ -16,22 +17,28 @@
     <table id="kt_datatable_dom_positioning" class="table table-striped table-row-bordered gy-5 gs-7 border rounded">
 <thead>
     <tr class="fw-bold fs-6 text-gray-800 px-7">
-        <th>{{__('messages.Folder Name')}}</th>
+        <th>{{__('messages.Excel File Name')}}</th>
+        <th> {{__('messages.Excel File')}}</th>
         <th> {{__('messages.Creation Date')}}</th>
         <th>{{__('messages.Actions')}}</th>
     </tr>
 </thead>
 <tbody>
 
-@foreach ($folders as $folder)
+@foreach ($files as $file)
 
 <tr>
 
 <td>
-    {{$folder->name}}
+    {{$file->name}}
 </td>
 <td>
-    {{$folder->created_at}}
+    <a href="{{asset('files/excels/'.$file->file)}}" Target=_blank class="text-center">
+        <img src="{{ asset('images/excel.png')}}" alt="{{ $file->name }}">
+    </a>
+</td>
+<td>
+    {{$file->created_at}}
 </td>
 
 
@@ -44,12 +51,12 @@
       <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
 
         <div class="menu-item px-3">
-          <a  title="Modifier" href="{{route("folders.edit",$folder->id)}}" class="menu-link px-3">
+          <a  title="Modifier" href="{{route("excels.edit",$file->id)}}" class="menu-link px-3">
             {{__('messages.Edit')}}
           </a>
         </div>
         <div class="menu-item btn-supprimer px-3">
-            <form method="POST" action="{{route("folders.destroy",$folder->id)}}">
+            <form method="POST" action="{{route("excels.destroy",$file->id)}}">
                 @csrf
                 @method("delete")
           <button type="submit"  onclick="return confirm('{{__('messages.Are you sure you want to delete?')}}');" class="menu-link  px-3" data-kt-customer-table-filter="Supprimer_row">
