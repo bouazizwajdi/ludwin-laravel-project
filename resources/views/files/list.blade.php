@@ -18,14 +18,14 @@
          @foreach($files as $file)
          <div class="col-md-3">
             <div class="card my-4">
-              <div class="card-body p-5 text-center">
+              <div class="card-body p-0 text-center">
 
                 <a href="{{asset('files/excels/'.$file->file)}}"  class="text-center">
                     <img src="{{ asset('images/excel.png')}}" alt="{{ $file->name }}">
                 </a>
 
             </div>
-            <div class="card-title text-center" style="height: 43px">
+            <div class="card-title text-center" style="height: 70px">
                     <a href="javascript:;">
                         <h5 class="card-title ">{{ $file->name }}</h5>
                     </a>
