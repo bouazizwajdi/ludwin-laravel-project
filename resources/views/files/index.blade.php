@@ -19,6 +19,7 @@
     <tr class="fw-bold fs-6 text-gray-800 px-7">
         <th>{{__('messages.Excel File Name')}}</th>
         <th> {{__('messages.Excel File')}}</th>
+        <th> {{__('messages.Folder')}}</th>
         <th> {{__('messages.Creation Date')}}</th>
         <th>{{__('messages.Actions')}}</th>
     </tr>
@@ -36,6 +37,9 @@
     <a href="{{asset('files/excels/'.$file->file)}}" Target=_blank class="text-center">
         <img src="{{ asset('images/excel.png')}}" alt="{{ $file->name }}">
     </a>
+</td>
+<td>
+    {{$file->folder->name}}
 </td>
 <td>
     {{$file->created_at}}
