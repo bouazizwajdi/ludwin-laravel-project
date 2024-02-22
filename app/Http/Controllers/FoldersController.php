@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Folder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class FoldersController extends Controller
 {
@@ -81,5 +83,16 @@ class FoldersController extends Controller
         //
         $folder->delete();
         return redirect()->route("folders.index")->with('success','Un dossier est supprimé avec succès');
+    }
+    public function listfolders()
+    {
+
+        if (Auth::guard()->user()->role == 'client') {
+            $user = User::find(Auth::guard()->user()->id);
+            $folders = $user->group->folders()->orderBy('name')->get();
+        } elseif (Auth::guard()->user()->role == 'admin')
+            $folders = Folder::orderBy('name', 'asc')->get();
+
+        return view("folders.list", compact("folders"));
     }
 }

@@ -16,11 +16,15 @@ return [
     'Excel Files'=>'Fichiers excel',
     'Add Excel File' => 'Ajouter un fichier excel',
     'Excel Files Management' => 'Gestion des fichiers Excel',
-    'List of Excel Files' => 'Liste des fichiers excel',
+    'List of Excel' => 'Liste des fichiers excel',
     'Add a New Excel File' => 'Ajouter un nouveau fichier excel',
     'This form allows you to quickly and efficiently create new excel file and assign it to the folder.' => 'Ce formulaire vous permet de créer rapidement et efficacement de nouveaux fichier excel et le classer dans un dossier.',
     'Excel File Name' => 'Nom du fichier excel',
     'Enter the excel file name' => 'Entrer le nom du fichier excel',
+    'Excel File'=>'Fichier excel',
+    'Add File'=> 'Ajouter fichier excel',
+    'Edit Excel File'=>'Modifier un fichier excel',
+    'This form allows you to quickly modify a file'=>'Ce formulaire vous permet de modifier rapidement un fichier excel.',
 
     'Folder' => 'Dossier',
     'Folders' => 'Dossiers',
@@ -31,6 +35,8 @@ return [
 'This form allows you to quickly and efficiently create new Folder.' => 'Ce formulaire vous permet de créer rapidement et efficacement de nouveaux dossiers.',
 'Folder Name' => 'Nom du dossier',
 'Enter the Folder name' => 'Enter the Folder name',
+'No folder yet'=>'Aucun dossier pour le moment',
+'No Excel File yet'=>'Aucun fichier excel pour le moment',
 
     'List Reports' => 'Liste des rapports',
     'Cancel' => 'Effacer',
@@ -111,6 +117,10 @@ return [
     'Enter password confirmation'=>'Entrer la confirmation du mot de passe',
     'Confirm Password'=>'Confirmez le mot de passe',
     'The password must be at least 8 characters'=>'Le mot de passe doit contenir au moins 8 caractères.',
+    'Download'=>'Télécharger',
+    'Error'=>'Erreur',
+    'We cant find that page'=>'Nous ne trouvons pas cette page',
+    'Return Home'=>'Retour Tableau de bord',
     ]
 
 ;

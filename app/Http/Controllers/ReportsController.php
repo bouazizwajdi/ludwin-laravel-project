@@ -71,7 +71,21 @@ class ReportsController extends Controller
     public function show(Report $report)
     {
         //
+        if (Auth::guard()->user()->role == 'client') {
+            $user = User::find(Auth::guard()->user()->id);
+            $reports_g = $user->group->reports()->get();
+        $tabf=[];
+        foreach ($reports_g as $item)
+        {
+           $tabf[]=$item->id;
+        }
+        $id=$report->id;
+        if(!in_array($id,$tabf))
+        return view("error.index");
+     }
+
         return view("reports.show", compact("report"));
+
     }
 
     /**

@@ -40,7 +40,8 @@ Route::post('/register',function(){
 Route::middleware(['admin'])->group(function () {
 
     Route::post('users/getreport', [UsersController::class,'getreport'])->name('users.getreport');
-
+    Route::get('folders/list', [FoldersController::class,'listfolders'])->name('folders.list');
+    Route::get('files/list/{id}', [FilesController::class,'listfiles'])->name('files.list');
     Route::resource('groups',GroupsController::class);
     Route::resource('excels',FilesController::class);
     Route::resource('folders',FoldersController::class);
@@ -51,6 +52,8 @@ Route::middleware(['admin'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('files/list/{id}', [FilesController::class,'listfiles'])->name('files.list');
+    Route::get('folders/list', [FoldersController::class,'listfolders'])->name('folders.list');
     Route::get('reports_list', [ReportsController::class,'listreports'])->name('reports.list');
     Route::get('reports/{report}', [ReportsController::class,'show'])->name('reports.show');
     Route::get('users/editprofil/{id}', [UsersController::class,'editprofil'])->name('users.editprofil');
@@ -58,3 +61,4 @@ Route::middleware(['auth'])->group(function () {
 
 });
 Route::get('/changer-langue/{lang}',  [LangueController::class,'changerLangue'])->name('changer.langue');
+Route::get('error',[UsersController::class,'error'])->name('error.index');

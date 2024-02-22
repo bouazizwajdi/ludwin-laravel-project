@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     use HasFactory;
-    protected $fillable=["name"];
+    protected $fillable=['name','file'];
 
 
     public function users(){
@@ -17,6 +17,10 @@ class Group extends Model
     public function reports(){
           return $this->belongsToMany(Report::class);
     }
+    public function folders(){
+        return $this->belongsToMany(Folder::class);
+  }
+
 
 }
 

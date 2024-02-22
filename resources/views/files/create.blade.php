@@ -2,8 +2,8 @@
 @section("module",__('messages.Excel Files Management'))
 @section("descmodule",__('messages.Add a New Excel File'))
 @section("btnright")
-    <a href="{{route('files.index')}}" class="btn btn-sm fw-bold btn-dark">
-        {{__('messages.List of Excel Files')}}
+    <a href="{{route('excels.index')}}" class="btn btn-sm fw-bold btn-dark">
+        {{__('messages.List of Excel')}}
     </a>
 @endsection
 @section("content")
@@ -27,7 +27,7 @@
     </div>
 <div id="kt_account_settings_profile_details" class="collapse show">
 
-<form action="{{route("files.store")}}" class="form" method="POST" enctype="multipart/form-data">
+<form action="{{route("excels.store")}}" class="form" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="card-body border-top p-9">
         <div class="row mb-6">
@@ -43,31 +43,34 @@
 </div>
 </div>
 
+
 <div class="row mb-6">
-    <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="name">{{__('messages.Excel File Name')}}
+    <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="file">{{__('messages.Excel File')}}
 
     </a></label>
     <div class="col-lg-8 fv-row">
-    <input class="form-control form-control-lg @error('name') is-invalid @enderror" placeholder="{{__('messages.Enter the excel file name')}}" value="{{ old('name') }}" type="text" name="name" id="name" required>
-
-    @error('name')
+    <input class="form-control form-control-lg @error('excel') is-invalid @enderror" type="file" name="file" id="file">
+    @error('file')
     <div class="text-danger mt-3">{{$message}}</div>
     @enderror
     </div>
+</div>
+
+<div class="row mb-6">
+    <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="name">{{__('messages.List of Folders')}} </a></label>
+    <div class="col-lg-8 fv-row">
+        <select aria-label="Select a Role" data-control="select2" data-placeholder="--- {{ __('messages.Choose') }} ---" class="form-select form-select-lg fw-semibold  @error('folder_id ') is-invalid @enderror" id="folder_id " name="folder_id">
+            <option value="">--- {{ __('messages.Choose') }} ---</option>
+           @foreach ($folders as $folder)
+                <option value="{{ $folder->id}}" {{ (old('folder_id')) ? 'selected' : '' }}>{{ $folder->name }}</option>
+            @endforeach
+        </select>
+         @error('folder_id ')
+    <div class="text-danger mt-3">{{$message}}</div>
+         @enderror
     </div>
+</div>
 
-    <div class="row mb-6">
-        <label class="col-lg-3 col-form-label required fw-semibold fs-6" for="name">{{__('messages.Excel File Name')}}
-
-        </a></label>
-        <div class="col-lg-8 fv-row">
-        <input class="form-control form-control-lg @error('name') is-invalid @enderror" placeholder="{{__('messages.Enter the excel file name')}}" value="{{ old('name') }}" type="text" name="name" id="name" required>
-
-        @error('name')
-        <div class="text-danger mt-3">{{$message}}</div>
-        @enderror
-        </div>
-        </div>
 
 </div>
 

@@ -60,10 +60,35 @@
 </div>
 
 @endforeach
+</div>
+</div>
 
+<div class="row mb-6">
+    <label class="col-lg-3 col-form-label required fw-semibold fs-6">{{__('messages.List of Folders')}}</label>
+    <div class="col-lg-8 fv-row row">
+
+@if(count($folders)>0)
+@foreach ($folders as $folder)
+
+
+<div class=" col-lg-4 col-6 form-check form-check-custom align-items-start pt-4 form-check">
+    <input class="form-check-input me-3" type="checkbox" name="folders[]" value="{{$folder->id}}" id="folder{{$folder->id}}"  @if(in_array($folder->id,$folders_id)) checked @endif/>
+    <span class="form-check-label text-dark d-flex flex-column align-items-start">
+        <span class="fw-bold fs-5 mb-0">
+             <label class="form-check-label text-dark " for="report{{$folder->id}}">
+            {{$folder->name}}
+              </label>
+        </span>
+    </span>
+</div>
+
+@endforeach
+@endif
 
 </div>
 </div>
+
+
 
 </div>
 

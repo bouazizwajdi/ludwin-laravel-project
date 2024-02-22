@@ -23,16 +23,21 @@ return [
 'This form allows you to quickly and efficiently create new Folder.' => 'This form allows you to quickly and efficiently create new Folder.',
 'Folder Name' => 'Folder Name',
 'Enter the Folder name' => 'Enter the Folder name',
+'No folder yet'=>'No folder yet',
+'No Excel File yet'=>'No Excel File yet',
 
 'Excel Files'=>'Excel files',
 'Add Excel File' => 'Add excel file',
 'Excel Files Management' => 'Excel files management',
-'List of Excel Files' => 'List of excel files',
+'List of Excel' => 'List of excel files',
 'Add a New Excel File' => 'Add a new excel filel',
 'This form allows you to quickly and efficiently create new user excel file and assign it to the folder.' => 'This form allows you to quickly and efficiently create new user excel file and assign it to the folder.',
 'Excel File Name' => 'Excel file name',
 'Enter the excel file name' => 'Enter the excel file name',
-
+'Excel File'=>'Excel file',
+'Edit Excel File'=>'Edit excel file',
+'Add File'=> 'Add Excel file',
+'This form allows you to quickly modify a file'=>'This form allows you to quickly modify a Excel File',
 
 'List Reports' => 'Reports list',
 
@@ -111,6 +116,10 @@ return [
 'Enter password confirmation'=>'Enter password confirmation',
 'Confirm Password'=>'Confirm Password',
 'The password must be at least 8 characters'=>'The password must be at least 8 characters',
+'Download'=>'Download',
+'Error'=>'Error',
+'We cant find that page'=>'We can\'t find that page.',
+'Return Home'=>'Return Dashboard',
 ]
 
 
